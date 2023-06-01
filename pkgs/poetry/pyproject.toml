@@ -49,6 +49,7 @@ python = "^3.7"
 
 poetry-core = "1.4.0"
 poetry-plugin-export = "^1.2.0"
+poetry-dynamic-versioning = "^0.22.0"
 "backports.cached-property" = { version = "^1.0.2", python = "<3.8" }
 cachecontrol = { version = "^0.12.9", extras = ["filecache"] }
 cleo = "^2.0.0"
