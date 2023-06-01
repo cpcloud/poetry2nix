@@ -115,6 +115,8 @@ pytest-github-actions-annotate-failures = "^0.1.7"
 [tool.poetry.scripts]
 poetry = "poetry.console.application:main"
 
+[tool.poetry-dynamic-versioning]
+enable = false
 
 [build-system]
 requires = ["poetry-core>=1.1.0"]
