@@ -122,7 +122,7 @@ lib.composeManyExtensions [
         inherit (self) buildPythonPackage flit-core;
       };
 
-      build = bootstrappingBase.build.override {
+      build = pkgs.python3.pkgs.build.override {
         inherit (self) buildPythonPackage flit-core packaging pyproject-hooks tomli;
       };
 
