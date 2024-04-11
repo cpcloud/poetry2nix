@@ -158,6 +158,7 @@ in
   scientific = callTest ./scientific { };
   apsw = callTest ./apsw { };
   no-infinite-recur-on-missing-gitignores = callTest ./no-infinite-recur-on-missing-gitignores { };
+  twisted = callTest ./twisted { };
 } // lib.optionalAttrs (!stdenv.isDarwin) {
   # pyqt5 = (callTest ./pyqt5 { });
   pyqt6 = callTest ./pyqt6 { };

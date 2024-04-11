@@ -24223,7 +24223,8 @@
   ],
   "twisted": [
     "hatchling",
-    "setuptools"
+    "setuptools",
+    "hatch-fancy-pypi-readme"
   ],
   "twitch-python": [
     "setuptools"
