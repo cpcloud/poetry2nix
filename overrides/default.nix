@@ -207,8 +207,8 @@ lib.composeManyExtensions [
 
       ansible = prev.ansible.overridePythonAttrs (
         old: {
-          # Inputs copied from nixpkgs as ansible doesn't specify it's dependencies
-          # in a correct manner.
+          # Inputs copied from nixpkgs as ansible doesn't specify its
+          # dependencies in a correct manner.
           propagatedBuildInputs = old.propagatedBuildInputs or [ ] ++ [
             final.pycrypto
             final.paramiko
@@ -224,6 +224,18 @@ lib.composeManyExtensions [
           ];
         }
       );
+
+      # this override is necessary because paramiko may not have
+      # optional-dependencies set
+      ncclient = prev.ncclient.overridePythonAttrs (_: {
+        propagatedBuildInputs = [
+          final.paramiko
+          final.lxml
+          final.six
+          final.pynacl
+          final.bcrypt
+        ];
+      });
 
       ansible-base = prev.ansible-base.overridePythonAttrs (
         old:
