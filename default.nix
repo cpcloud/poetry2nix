@@ -78,8 +78,7 @@ let
       checkInputs' = getDeps (pyProject.tool.poetry."dev-dependencies" or { })  # <poetry-1.2.0
         # >=poetry-1.2.0 dependency groups
         ++ lib.flatten (map (g: getDeps (pyProject.tool.poetry.group.${g}.dependencies or { })) checkGroups);
-    in
-    {
+
       buildInputs = mkInput "buildInputs" (if includeBuildSystem then buildSystemPkgs else [ ]);
       propagatedBuildInputs = mkInput "propagatedBuildInputs" (
         let
@@ -87,6 +86,12 @@ let
         in
         lib.flatten (map (g: getDeps availableGroups.${g}.dependencies or { }) groups)
       );
+    in
+    {
+      inherit buildInputs propagatedBuildInputs;
+      # newer nixpkgs requires these fields
+      build-system = buildInputs;
+      dependencies = propagatedBuildInputs;
       nativeBuildInputs = mkInput "nativeBuildInputs" [ ];
       checkInputs = mkInput "checkInputs" checkInputs';
       nativeCheckInputs = mkInput "nativeCheckInputs" checkInputs';
